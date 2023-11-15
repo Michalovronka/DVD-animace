@@ -1,7 +1,7 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const logo = new Image();
-logo.src = "./res/img/logo.webp";
+logo.src = "./res/img/logo.jpg";
 
 let x = 10;
 let y = 10;
@@ -31,9 +31,15 @@ window.onload = () => {
     x += xVelocity;
     y += yVelocity;
 
+    ctx.filter = `hue-rotate(${getRandomnumber(0, 360)}deg)`;
+
     ctx.drawImage(logo, x, y, width, height);
+    ctx.filter = "none";
   }, 1);
 };
+
+const getRandomnumber = (minimum, maximum) => Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+
 function changeCanvasSize() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
